@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     environment{
@@ -32,10 +31,13 @@ pipeline {
                 sh 'docker push $name'
             }
         }
-        stage('message'){
-            steps{
-            echo "nirbnonvrnvnronv"
-            }
-    }
 }
+    post{
+        success{
+            echo "done perfectly"
+        }
+        failure{
+            echo "failureee"
+        }
+    }
 }
