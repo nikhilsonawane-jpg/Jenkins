@@ -18,7 +18,7 @@ pipeline {
 
         stage('Verify Image') {
             steps {
-                sh 'docker images | grep jenkins:1.0'
+                sh 'docker image inspect jenkins:1.0'
             }
         }
     }
