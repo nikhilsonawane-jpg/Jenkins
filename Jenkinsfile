@@ -2,8 +2,8 @@
 pipeline {
     agent any
     environment{
-        name= 'nikhilsonawane2jpg/jenkins:1.0'
-        
+        username= 'nikhilsonawane2jpg/jenkins'
+        tag= '1.1'        
     }
     stages {
     
@@ -14,9 +14,17 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $name .'
+        // stage('Build Docker Image') {
+        //     steps {
+        //         sh 'docker build -t $name .'
+        //     }
+        // }
+
+        stage('build docker image'){
+            steps{
+                script{
+                    shared($name, $tag)
+                }
             }
         }
         stage('Docker login'){
