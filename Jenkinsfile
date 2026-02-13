@@ -6,6 +6,13 @@ pipeline {
         
     }
     stages {
+        stage('hello'){
+            steps{
+                script{
+                    hello()
+                }
+            }
+        }
 
         stage('Checkout Code') {
             steps {
