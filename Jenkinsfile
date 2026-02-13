@@ -23,7 +23,7 @@ pipeline {
         stage('build docker image'){
             steps{
                 script{
-                    shared($username, $tag)
+                    shared(username, tag)
                 }
             }
         }
