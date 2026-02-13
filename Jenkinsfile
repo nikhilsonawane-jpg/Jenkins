@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment{
-        name: 'nikhilsonawane-jpg/jenkins:1.0'
+        name= 'nikhilsonawane-jpg/jenkins:1.0'
         
     }
     stages {
