@@ -36,9 +36,17 @@ pipeline {
         }
 
 
-        stage('Push Docker Image') {
-            steps {
-                sh 'docker push ${username}:${tag}'
+        // stage('Push Docker Image') {
+        //     steps {
+        //         sh 'docker push ${username}:${tag}'
+        //     }
+        // }
+
+        stage ('Push Docker Image') {
+            steps{
+                script{
+                    push(username, tag)
+                }
             }
         }
 }
