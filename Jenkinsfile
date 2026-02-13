@@ -1,3 +1,4 @@
+@library() _
 pipeline {
     agent any
     environment{
