@@ -1,7 +1,10 @@
 
 pipeline {
     agent any
-
+    environment{
+        name: nikhilsonawane-jpg/jenkins:1.0
+        
+    }
     stages {
 
         stage('Checkout Code') {
@@ -12,13 +15,20 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t jenkins:1.0 .'
+                sh 'docker build -t $name .'
             }
         }
+        stage('Docker login'){
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                }
+        }
 
-        stage('Verify Image') {
+
+        stage('Push Docker Image') {
             steps {
-                sh 'docker image inspect jenkins:1.0'
+                sh 'docker push $name'
             }
         }
     }
