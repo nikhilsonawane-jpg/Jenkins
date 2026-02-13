@@ -16,7 +16,7 @@ pipeline {
 
         // stage('Build Docker Image') {
         //     steps {
-        //         sh 'docker build -t $username:$tag .'
+        //         sh 'docker build -t ${username}:${tag} .'
         //     }
         // }
 
