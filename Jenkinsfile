@@ -1,4 +1,4 @@
-@library("cred") _
+@Library("cred") _
 pipeline {
     agent any
     environment{
