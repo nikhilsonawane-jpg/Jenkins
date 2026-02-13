@@ -38,7 +38,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push $name'
+                sh 'docker push ${username}:${tag}'
             }
         }
 }
