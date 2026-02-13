@@ -32,5 +32,9 @@ pipeline {
                 sh 'docker push $name'
             }
         }
+        stage('message'){
+            steps{
+            echo "nirbnonvrnvnronv"
+            }
     }
 }
