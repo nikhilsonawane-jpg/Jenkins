@@ -1,10 +1,10 @@
-@Library("cred") _
+// @Library("cred") _
 pipeline {
-    agent any
-    environment{
-        username= 'nikhilsonawane2jpg/jenkins'
-        tag= '1.1'        
-    }
+    agent {label 'node1'}
+    // environment{
+    //     username= 'nikhilsonawane2jpg/jenkins'
+    //     tag= '1.1'        
+    // }
     stages {
     
 
@@ -14,19 +14,19 @@ pipeline {
             }
         }
 
-        // stage('Build Docker Image') {
-        //     steps {
-        //         sh 'docker build -t ${username}:${tag} .'
-        //     }
-        // }
-
-        stage('build docker image'){
-            steps{
-                script{
-                    shared(username, tag)
-                }
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${username}:${tag} .'
             }
         }
+
+        // stage('build docker image'){
+        //     steps{
+        //         script{
+        //             shared(username, tag)
+        //         }
+        //     }
+        // }
         stage('Docker login'){
         steps {
             withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
@@ -36,19 +36,19 @@ pipeline {
         }
 
 
-        // stage('Push Docker Image') {
-        //     steps {
-        //         sh 'docker push ${username}:${tag}'
-        //     }
-        // }
-
-        stage ('Push Docker Image') {
-            steps{
-                script{
-                    push(username, tag)
-                }
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push ${username}:${tag}'
             }
         }
+
+        // stage ('Push Docker Image') {
+        //     steps{
+        //         script{
+        //             push(username, tag)
+        //         }
+        //     }
+        // }
 }
     post{
         success{
